@@ -18,7 +18,7 @@ import { PaymentsModule } from './pix/pix.module';
             isGlobal: true,
         }),
 
-        MongooseModule.forRoot('mongodb://mongoadmin:secret@localhost:27017', {
+        MongooseModule.forRoot(process.env.MONGO_URI, {
             dbName: 'mydatabase',
         }),
         LoggerModule,
