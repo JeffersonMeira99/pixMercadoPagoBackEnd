@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+    mongo:
+        image: mongo:7.0.12
+        container_name: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: mongoadmin
+            MONGO_INITDB_ROOT_PASSWORD: secret
+        volumes:
+            - VOL1:/data/db
+            - configdb:/data/configdb # Caso precise de um volume de configuração, crie ou use um existente
+        ports:
+            - '27017:27017'
+        networks:
+            - NET1
+
+volumes:
+    VOL1:
+        external: true
+    configdb:
+        driver: local # Crie um novo volume local se necessário
+
+networks:
+    NET1:
+        driver: bridge
